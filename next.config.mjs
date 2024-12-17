@@ -3,13 +3,15 @@ import nextra from 'nextra'
 const withNextra = nextra({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.js',
-  latex: true,
-  search: {
-    codeblocks: false,
+  defaultShowCopyCode: true,
+  flexsearch: {
+    codeblocks: false
   },
-  contentDirBasePath: '/',
+  latex: true,
+  contentDirBasePath: '/'
 })
 
 export default withNextra({
   reactStrictMode: true,
+  transpilePackages: ['nextra']
 })
