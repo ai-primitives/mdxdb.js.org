@@ -11,7 +11,7 @@ export default {
       'providers': 'Storage Providers'
     }
   },
-  'api': {
+  'reference': {
     'title': 'API Reference',
     'type': 'folder',
     'items': {
