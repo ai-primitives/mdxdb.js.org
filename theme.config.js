@@ -20,6 +20,18 @@ export default {
       <meta name="og:title" content="mdxdb: MDX-based database with vector search" />
     </>
   ),
+  navigation: {
+    prev: true,
+    next: true
+  },
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+    toggleButton: true
+  },
+  toc: {
+    float: true,
+    title: "On This Page"
+  },
   footer: {
     text: `MIT ${new Date().getFullYear()} © ai-primitives`
   }

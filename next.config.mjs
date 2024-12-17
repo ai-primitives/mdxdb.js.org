@@ -7,6 +7,9 @@ const withNextra = nextra({
   mdxOptions: {
     remarkPlugins: [],
     rehypePlugins: []
+  },
+  flexsearch: {
+    codeblocks: true
   }
 })
 
