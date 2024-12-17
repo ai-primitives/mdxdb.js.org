@@ -1,20 +1,23 @@
 export default {
-  'index': 'Introduction',
+  index: {
+    title: 'Introduction',
+    type: 'page'
+  },
   'get-started': 'Getting Started',
-  'features': {
-    'title': 'Features',
-    'type': 'folder',
-    'items': {
+  features: {
+    title: 'Features',
+    type: 'menu',
+    items: {
       'mdx-native': 'MDX Native',
       'vector-search': 'Vector Search',
       'json-ld': 'JSON-LD Support',
       'providers': 'Storage Providers'
     }
   },
-  'reference': {
-    'title': 'API Reference',
-    'type': 'folder',
-    'items': {
+  reference: {
+    title: 'API Reference',
+    type: 'menu',
+    items: {
       'database': 'Database',
       'collection': 'Collection',
       'document': 'Document',
