@@ -1,0 +1,74 @@
+# Providers API
+
+mdxdb providers handle storage and retrieval of documents. Each provider implements a standard interface while providing specific optimizations.
+
+## Provider Interface
+
+All providers must implement:
+
+```typescript
+interface Provider {
+  // Core methods
+  find(options: QueryOptions): Promise<Document[]>
+  findOne(options: QueryOptions): Promise<Document | null>
+  create(data: DocumentData): Promise<Document>
+  update(id: string, data: Partial<DocumentData>): Promise<Document>
+  delete(id: string): Promise<void>
+
+  // Vector search methods
+  createVectors(docs: Document[]): Promise<void>
+  findSimilar(options: SimilarityOptions): Promise<Document[]>
+
+  // Lifecycle methods
+  initialize(): Promise<void>
+  close(): Promise<void>
+}
+```
+
+## Available Providers
+
+
+### Filesystem Provider (@mdxdb/fs)
+
+```typescript
+import { createDatabase } from '@mdxdb/core'
+import { FilesystemProvider } from '@mdxdb/fs'
+
+const db = createDatabase({
+  provider: new FilesystemProvider({
+    directory: './content',
+    watch: true
+  })
+})
+```
+
+### HTTP Provider (@mdxdb/fetch)
+
+```typescript
+import { createDatabase } from '@mdxdb/core'
+import { HttpProvider } from '@mdxdb/fetch'
+
+const db = createDatabase({
+  provider: new HttpProvider({
+    endpoint: 'https://api.example.com/content',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+})
+```
+
+### ClickHouse Provider (@mdxdb/clickhouse)
+
+```typescript
+import { createDatabase } from '@mdxdb/core'
+import { ClickHouseProvider } from '@mdxdb/clickhouse'
+
+const db = createDatabase({
+  provider: new ClickHouseProvider({
+    host: 'localhost',
+    database: 'mdxdb',
+    table: 'documents'
+  })
+})
+```

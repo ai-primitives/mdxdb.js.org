@@ -1,0 +1,53 @@
+# Database API
+
+The Database class is the main entry point for mdxdb. It provides methods for creating and managing collections, configuring providers, and handling database-wide operations.
+
+## Creating a Database
+
+```typescript
+import { createDatabase } from '@mdxdb/core'
+
+const db = createDatabase({
+  provider: 'fs',
+  directory: './content',
+  // Optional configurations
+  vectorSearch: {
+    provider: 'openai'
+  },
+  jsonLd: {
+    enabled: true
+  }
+})
+```
+
+## API Reference
+
+### createDatabase(config)
+Creates a new database instance.
+
+#### Parameters
+- `config`: DatabaseConfig
+  - `provider`: 'fs' | 'fetch' | 'clickhouse'
+  - `directory?`: string (for fs provider)
+  - `endpoint?`: string (for fetch provider)
+  - `vectorSearch?`: VectorSearchConfig
+  - `jsonLd?`: JsonLdConfig
+
+#### Returns
+- `Database`: Database instance
+
+### Database Methods
+
+#### .collection(name)
+Creates or retrieves a collection.
+- `name`: string - Collection name
+- Returns: `Collection`
+
+#### .close()
+Closes database connections.
+- Returns: `Promise<void>`
+
+#### .configure(options)
+Updates database configuration.
+- `options`: `Partial\<DatabaseConfig\>`
+- Returns: `Promise<void>`

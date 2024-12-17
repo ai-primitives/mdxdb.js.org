@@ -1,14 +1,18 @@
 import nextra from 'nextra'
 
 const withNextra = nextra({
-  latex: true,
-  search: {
-    codeblocks: false,
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.js',
+  defaultShowCopyCode: true,
+  mdxOptions: {
+    remarkPlugins: [],
+    rehypePlugins: []
   },
-  // contentDirBasePath: '/docs',
-  contentDirBasePath: '/',
+  flexsearch: {
+    codeblocks: true
+  }
 })
 
 export default withNextra({
-  reactStrictMode: true,
+  reactStrictMode: true
 })

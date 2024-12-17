@@ -1,0 +1,119 @@
+# Getting Started
+
+Get up and running with mdxdb in your project.
+
+## Installation
+
+```bash
+npm install @mdxdb/core
+# or
+pnpm add @mdxdb/core
+# or
+yarn add @mdxdb/core
+```
+
+Install provider packages as needed:
+
+```bash
+# Filesystem provider
+npm install @mdxdb/fs
+
+# HTTP provider
+npm install @mdxdb/fetch
+
+# ClickHouse provider
+npm install @mdxdb/clickhouse
+```
+
+## Quick Start
+
+1. Create a database instance:
+
+```typescript
+import { createDatabase } from '@mdxdb/core'
+
+const db = createDatabase({
+  provider: 'fs',
+  directory: './content'
+})
+```
+
+2. Create a collection:
+
+```typescript
+const posts = db.collection('posts')
+```
+
+3. Query documents:
+
+```typescript
+// Find all published posts
+const docs = await posts.find({
+  where: { published: true }
+})
+
+// Search by content
+const results = await posts.search({
+  query: 'React hooks'
+})
+
+// Find similar documents
+const similar = await posts.findSimilar({
+  to: 'doc-id',
+  limit: 3
+})
+```
+
+## Document Structure
+
+Create MDX files with frontmatter:
+
+```mdx
+---
+title: Getting Started with React
+date: 2024-01-01
+published: true
+tags: ['react', 'javascript']
+---
+
+# Getting Started with React
+
+Your MDX content here...
+```
+
+## Advanced Features
+
+### Vector Search
+
+Enable vector search for semantic queries:
+
+```typescript
+const db = createDatabase({
+  provider: 'fs',
+  vectorSearch: {
+    provider: 'openai',
+    model: 'text-embedding-ada-002'
+  }
+})
+```
+
+### JSON-LD Support
+
+Add structured data to your documents:
+
+```typescript
+const db = createDatabase({
+  provider: 'fs',
+  jsonLd: {
+    enabled: true,
+    context: 'https://schema.org'
+  }
+})
+```
+
+## Next Steps
+
+- Explore [MDX Native Support](/features/mdx-native)
+- Learn about [Vector Search](/features/vector-search)
+- Understand [JSON-LD Integration](/features/json-ld)
+- Configure [Storage Providers](/features/providers)

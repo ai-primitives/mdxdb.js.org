@@ -1,0 +1,56 @@
+# Storage Providers
+
+mdxdb supports multiple storage backends through its provider system, allowing you to choose the best storage solution for your needs.
+
+## Available Providers
+
+### Filesystem (@mdxdb/fs)
+- Local file system storage
+- Directory-based collections
+- Automatic file watching
+- Fast local development
+
+### HTTP/API (@mdxdb/fetch)
+- Remote content fetching
+- REST API integration
+- Webhook support
+- Cloud storage compatibility
+
+### ClickHouse (@mdxdb/clickhouse)
+- Vector search optimization
+- High-performance queries
+- Scalable storage
+- Advanced analytics
+
+## Configuration
+
+```typescript
+// Filesystem Provider
+const fsDb = createDatabase({
+  provider: 'fs',
+  directory: './content'
+})
+
+// HTTP Provider
+const httpDb = createDatabase({
+  provider: 'fetch',
+  endpoint: 'https://api.example.com/content'
+})
+
+// ClickHouse Provider
+const clickhouseDb = createDatabase({
+  provider: 'clickhouse',
+  connection: {
+    host: 'localhost',
+    database: 'mdxdb'
+  }
+})
+```
+
+## Provider Selection Guide
+
+Choose your provider based on:
+1. **Scale**: Data volume and query patterns
+2. **Performance**: Read/write requirements
+3. **Distribution**: Content delivery needs
+4. **Integration**: Existing infrastructure

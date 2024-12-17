@@ -1,0 +1,66 @@
+# Collection API
+
+Collections in mdxdb represent groups of related MDX documents. They provide methods for querying, updating, and managing documents.
+
+## Usage
+
+```typescript
+const posts = db.collection('posts')
+```
+
+## API Reference
+
+### Collection Methods
+
+#### .find(options)
+Queries documents in the collection.
+
+```typescript
+const docs = await collection.find({
+  where: {
+    title: { contains: 'React' },
+    published: true
+  },
+  limit: 10,
+  skip: 0,
+  sort: { date: 'desc' }
+})
+```
+
+#### .findOne(options)
+Retrieves a single document.
+
+```typescript
+const doc = await collection.findOne({
+  where: { slug: 'getting-started' }
+})
+```
+
+#### .findSimilar(options)
+Finds similar documents using vector search.
+
+```typescript
+const similar = await collection.findSimilar({
+  to: documentId,
+  limit: 5
+})
+```
+
+#### .search(options)
+Performs semantic search across documents.
+
+```typescript
+const results = await collection.search({
+  query: 'How to implement authentication?',
+  limit: 5
+})
+```
+
+#### .count(where)
+Counts documents matching criteria.
+
+```typescript
+const count = await collection.count({
+  published: true
+})
+```
