@@ -1,0 +1,49 @@
+# Vector Search
+
+mdxdb provides built-in support for vector search capabilities, allowing you to perform semantic searches across your MDX content using embeddings.
+
+## Overview
+
+Vector search enables:
+- Semantic similarity search
+- Natural language queries
+- Content recommendations
+- Related document discovery
+
+## Configuration
+
+```typescript
+import { createDatabase } from '@mdxdb/core'
+
+const db = createDatabase({
+  provider: 'fs',
+  vectorSearch: {
+    provider: 'openai',
+    model: 'text-embedding-ada-002',
+    apiKey: process.env.OPENAI_API_KEY
+  }
+})
+```
+
+## Usage
+
+```typescript
+// Search for semantically similar content
+const results = await db.collection('docs').search({
+  query: 'How to implement authentication?',
+  limit: 5
+})
+
+// Get similar documents
+const similar = await db.collection('posts').findSimilar({
+  to: documentId,
+  limit: 3
+})
+```
+
+## Performance Tips
+
+1. **Batch Processing**: Generate embeddings in batches
+2. **Caching**: Cache embeddings for frequently accessed content
+3. **Index Management**: Regularly update your vector indices
+4. **Query Optimization**: Use appropriate similarity thresholds

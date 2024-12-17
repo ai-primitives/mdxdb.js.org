@@ -1,0 +1,37 @@
+# MDX Native Support
+
+mdxdb is built from the ground up to work seamlessly with MDX documents. This means you can store and query rich content that includes both markdown and JSX components.
+
+## Features
+
+- Native MDX parsing and storage
+- Component-aware querying
+- Rich content support
+- Markdown and JSX interoperability
+
+## Usage
+
+```typescript
+import { createDatabase } from '@mdxdb/core'
+
+// Create a database instance
+const db = createDatabase({
+  provider: 'fs',
+  directory: './content'
+})
+
+// Query MDX content
+const docs = await db.collection('posts').find({
+  where: {
+    // Query both markdown and component content
+    content: { contains: 'React' }
+  }
+})
+```
+
+## Best Practices
+
+1. **Structure Your Content**: Organize your MDX files in a logical directory structure
+2. **Use Components Consistently**: Define reusable components for common patterns
+3. **Leverage Frontmatter**: Use frontmatter for metadata and querying
+4. **Type Your Components**: Take advantage of TypeScript for component props

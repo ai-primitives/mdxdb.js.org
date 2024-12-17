@@ -1,0 +1,68 @@
+# Document API
+
+Documents in mdxdb are MDX files with optional frontmatter metadata. They can include both markdown content and React components.
+
+## Document Structure
+
+```mdx
+---
+title: Getting Started
+date: 2024-01-01
+published: true
+---
+
+# Content Title
+
+Your MDX content here...
+```
+
+## API Reference
+
+### Document Properties
+
+- `id`: Unique document identifier
+- `content`: MDX content
+- `metadata`: Frontmatter metadata
+- `path`: Document path (for fs provider)
+- `url`: Document URL (for fetch provider)
+- `vectors`: Document embeddings
+- `jsonLd`: Structured data
+
+### Document Methods
+
+#### .render(options)
+Renders MDX content to React components.
+
+```typescript
+const { default: Content } = await document.render({
+  components: customComponents
+})
+```
+
+#### .update(data)
+Updates document content or metadata.
+
+```typescript
+await document.update({
+  content: newContent,
+  metadata: {
+    title: 'Updated Title'
+  }
+})
+```
+
+#### .delete()
+Removes the document from the collection.
+
+```typescript
+await document.delete()
+```
+
+#### .similar(options)
+Finds similar documents.
+
+```typescript
+const similar = await document.similar({
+  limit: 5
+})
+```

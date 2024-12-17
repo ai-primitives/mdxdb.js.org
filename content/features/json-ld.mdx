@@ -1,0 +1,64 @@
+# JSON-LD Support
+
+mdxdb includes native support for JSON-LD (JavaScript Object Notation for Linked Data), enabling structured data and semantic web capabilities in your MDX content.
+
+## Features
+
+- Native JSON-LD parsing
+- Structured data querying
+- Semantic web integration
+- Rich snippet support
+
+## Implementation
+
+```typescript
+import { createDatabase } from '@mdxdb/core'
+
+const db = createDatabase({
+  provider: 'fs',
+  jsonLd: {
+    enabled: true,
+    context: 'https://schema.org'
+  }
+})
+```
+
+## Usage Examples
+
+### Adding JSON-LD to MDX
+
+```mdx
+---
+jsonLd:
+  "@type": "Article"
+  headline: "Getting Started with mdxdb"
+  author:
+    "@type": "Person"
+    name: "John Doe"
+---
+
+# Getting Started
+
+Your MDX content here...
+```
+
+### Querying JSON-LD Data
+
+```typescript
+// Find all articles by a specific author
+const articles = await db.collection('posts').find({
+  where: {
+    jsonLd: {
+      "@type": "Article",
+      "author.name": "John Doe"
+    }
+  }
+})
+```
+
+## Best Practices
+
+1. **Use Standard Schemas**: Follow schema.org conventions
+2. **Validate Structure**: Ensure JSON-LD data is well-formed
+3. **Index Key Properties**: Optimize for common queries
+4. **Keep it Simple**: Only include relevant structured data
