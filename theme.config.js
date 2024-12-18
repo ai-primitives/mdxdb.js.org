@@ -1,6 +1,9 @@
 export default {
   project: {
-    link: 'https://github.com/ai-primitives/mdxdb'
+    link: 'https://github.com/ai-primitives/mdxdb',
+    chat: {
+      link: 'https://discord.gg/BHZCzx83'
+    }
   },
   docsRepositoryBase: 'https://github.com/ai-primitives/mdxdb.js.org/blob/main',
   useNextSeoProps() {
